@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'analyzes',
     'patients.apps.PatientsConfig',
     'allergen_types.apps.AllergenTypesConfig',
     'django.contrib.admin',
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'allergens.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'allergens', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,3 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'allergens', 'static'),
+] 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
