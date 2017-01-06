@@ -1,0 +1,43 @@
+{% extends 'bootstrap.html' %}
+{% load static from staticfiles %}
+
+{% block head %}
+    <link href="{% static 'analyzes/css/analyzes.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block body %}
+<div class='container-fluid'>
+<div class='row'>
+<aside class='col-xs-3'>
+    <ul id='patients' class='list-unstyled'>
+    {% for patient in patients %}
+        <li id='p{{ patient.id }}' draggable='true' ondragstart='drag(event)'>
+        {{ patient.last_name }} 
+        {{ patient.first_name }} 
+        <span class='pull-right'>{{ patient.id }}</span>
+        </li>
+    {% endfor %}
+    </ul>
+</aside>
+<main class='col-xs-9'>
+    <table class='table table-bordered'>
+        <tr>
+            <th></th>
+            {% for j in plate.horizontal_indices %}
+            <th>{{ j }}</th>
+            {% endfor %}
+        </tr>
+        {% for i in plate.vertical_indices %}
+        <tr>
+            <th>{{ i }}</th>
+            {% for j in plate.horizontal_indices %}
+            <td ondrop='drop(event)' ondragover='allowDrop(event)'></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</main>
+</div>
+</div>
+<script src="{% static 'analyzes/js/analyzes.js' %}"></script>
+{% endblock body %}

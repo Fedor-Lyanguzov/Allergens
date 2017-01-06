@@ -1,6 +1,11 @@
 {% extends 'dashboard.html' %}
 
 {% block sidebar %}
+<ul>
+{% for patient in patients %}
+<li> {{ patient.last_name }} {{ patient.first_name }} </li>
+{% endfor %}
+</ul>
 {% endblock sidebar %}
 
 {% block content %}
